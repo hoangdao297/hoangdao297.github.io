@@ -1,0 +1,200 @@
+body{
+	background-color: #DAF7A6;
+}
+p.menu{
+	text-align: center;
+	background-color: #E69A8DFF;
+	margin-top: 45px;
+}
+p.menu > a{
+	font-family: "Courier New", Courier, monospace;
+	font-size: 36px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 10px;
+	background-color: #5F4B8BFF ;
+	color: #E69A8DFF;
+	text-decoration: none;
+	border: 3px solid #ff7a59;
+}
+.home:hover,.me:hover,.edu:hover,.ex:hover,.proj:hover,.cont:hover {
+  border: 3px dotted #ff7a59;
+  color: #ff7a59;
+  background: #fff;
+}
+h1.MainpageName{
+	font-family: "Courier New", Courier, monospace;
+	color: #000000;
+	font-size: 50px;
+	position: absolute;
+	font-weight: bold;
+	margin-top: 120px ;
+	margin-left:720px;
+	text-align: center;
+	padding-left: 36px;
+	width: 360px;
+	padding: 10px;
+	border-style: dashed;
+	border-width: thick;
+	border-color: #C9E628 #06FBD2 #CB06FB #EF2A54;
+}
+h1.Contact{
+	font-family: "Courier New", Courier, monospace;
+	color: #000000;
+	font-size: 100px;
+	position: absolute;
+	font-weight: bold;
+	text-align: center;
+	margin-left: 320px;
+}
+h1.Education{
+	font-family: "Courier New", Courier, monospace;
+	color: #000000;
+	font-size: 100px;
+	position: absolute;
+	font-weight: bold;
+	text-align: center;
+	margin-left: 370px;
+}
+.homepicture1{
+	width: 500px;
+	height: 500px;
+	padding-top: 36px;
+	margin-left: 36px;
+}
+.homepicture2{
+	width: 1200px;
+	height: 900px;
+	padding-top: 0px;
+	margin-left: 36px;
+}
+.place1,.place2{
+	margin-left: 36px;
+	color: #000000;
+}
+.socialmedia{
+	margin-left: 580px;
+	padding-top: 50px;
+}
+.smicons{
+	width: 100px;
+	height: 90px;
+	padding-top: 20px;
+}
+.normalcontact{
+	margin-top: 250px;
+	font-size: 50px;
+	text-align: center;
+}
+.mailicon{
+	width: 100px;
+	height: 90px;
+}
+.phoneicon{
+	width: 100px;
+	height: 90px;
+}
+.CUA{
+	margin-top: 200px;
+	padding-bottom: 20px;
+}
+.cuaimg{
+	float: left;
+	margin-top: 120px;
+	width: 450px;
+	height: 350px;
+}
+.hcmutimg{
+	float: left;
+	width: 450px;
+	height: 450px;
+}
+.cuades{
+	font-family: "Courier New", Courier, monospace;
+	color: #6F2661;
+	font-size: 36px;
+	line-height: 100px;
+	font-weight: bold;
+	text-align: left;
+	padding-top: 100px;
+	margin-left: 500px;
+}
+.hcmutdes{
+	font-family: "Courier New", Courier, monospace;
+	color: #6F2661;
+	font-size: 36px;
+	line-height: 100px;
+	font-weight: bold;
+	text-align: left;
+	margin-left: 500px;
+}
+.coursehighlight{
+	font-family: "Courier New", Courier, monospace;
+	color: #000000;
+	font-weight: bold;
+	font-size: 20px;
+	margin-left: 50px;
+}
+.portrait{
+	margin-top: 80px;
+	text-align: center;
+}
+.face{
+	width: 320px;
+	height: 333px;
+}
+.pname{
+	padding-top: 5px;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 36px;
+	font-weight: bold;
+	color: #F51616;
+	text-align: center;
+}
+.selfintro{
+	font-family: Georgia, Times, serif;
+	font-size: 27px;
+	font-weight: bold;
+	color: #000000;
+	margin-left: 200px;
+}
+.head{
+	font-family: "Courier New", Courier, monospace;
+	font-weight: bold;
+	padding-top: 50px;
+	font-size: 100px;
+	text-align: center;
+	color: #000000;
+}
+.skills,.exp{
+	padding-top: 50px;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 36px;
+	font-weight: bold;
+	margin-left: 120px;
+}
+.programminglang,.pl,.other,.os{
+	font-size: 27px;
+}
+.tt{
+	color: #FF070A;
+	font-size: 27px;
+}
+.bmc{
+	font-size: 27px;
+}
+.project{
+	padding-top: 50px;
+}
+table{
+	font-family: "Courier New", Courier, monospace;
+	width: 1200px;
+	font-size: 20px;
+}
+table,td,th,tr{
+	border: 2px solid #111111;
+}
+td{
+	padding: 27px 27px 27px 27px;
+}
