@@ -46,7 +46,7 @@ h1.Contact{
 	position: absolute;
 	font-weight: bold;
 	text-align: center;
-	margin-left: 320px;
+	margin-left: 720px;
 }
 h1.Education{
 	font-family: "Courier New", Courier, monospace;
@@ -55,7 +55,7 @@ h1.Education{
 	position: absolute;
 	font-weight: bold;
 	text-align: center;
-	margin-left: 370px;
+	margin-left: 720px;
 }
 .homepicture1{
 	width: 500px;
