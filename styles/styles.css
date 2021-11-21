@@ -64,6 +64,7 @@ h1.Education{
 	margin-left: 36px;
 }
 .homepicture2{
+	display: block;
 	width: 1200px;
 	height: 900px;
 	padding-top: 0px;
