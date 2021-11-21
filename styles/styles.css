@@ -67,10 +67,16 @@ h1.Education{
 	width: 1200px;
 	height: 900px;
 	padding-top: 0px;
-	margin-left: 36px;
+	margin-left: auto;
+	margin-right: auto;
 }
-.place1,.place2{
+.place1{
 	margin-left: 36px;
+	color: #000000;
+}
+.place2{
+	margin-left: auto;
+	margin-right: auto;
 	color: #000000;
 }
 .socialmedia{
