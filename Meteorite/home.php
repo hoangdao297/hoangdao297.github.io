@@ -16,7 +16,7 @@
 
 
 <?php
-print ("<form method=\"post\" action=\"index.php\">\n<fieldset>\n");
+print ("<form method=\"post\" action=\"home.php\">\n<fieldset>\n");
 
 
 /*Discovery filter*/
