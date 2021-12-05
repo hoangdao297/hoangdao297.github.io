@@ -1,0 +1,108 @@
+
+
+body {
+	background:rgb(241, 215, 176);
+	color:#000000;
+	font-family:sans-serif;
+}
+
+h1 {
+	margin-top:10px;
+	font-weight:  bolder;
+	text-decoration: underline;
+	text-align:  center;
+}
+
+h2 {
+	font-weight:bold;
+	text-decoration:underline;
+}
+
+p {
+
+	text-align: center;
+}
+
+img[src="MeteoriteImg.jpeg"] {
+	margin-left: 540px;
+}
+
+/* form style */
+fieldset {
+	position: fixed;
+	background: #efefef;
+	top:30px;
+	left:30px;
+	border-color:#000000;
+	border-style:solid;
+	border-width:thin;
+	border-radius:15px;
+	box-shadow: 5px 5px 10px #555555;
+	width: 200px;
+}
+
+input[type=submit] {
+	float: right;
+	margin-left:5px;
+	margin-right:5px;
+}
+
+input[type=button] {
+	float: right;
+	margin-left:5px;
+	margin-right:5px;
+}
+
+label {
+	font-weight:bold;
+	margin-left:20px;
+}
+
+/* table style */
+table {
+	border-color:#000000;
+	border-style:solid;
+	border-width:thin;
+	border-collapse:collapse;
+	margin-left:280px;
+	margin-right:auto;
+}
+
+th {
+	background:#000000;
+	color:#ffffff;
+	text-align:center;
+	padding-bottom:3px;
+	padding-left:1em;
+	padding-right:1em;
+	padding-top:3px;
+}
+
+tr:nth-child(odd) {
+	background:#ffffff;
+}
+
+tr:nth-child(even) {
+	background:#db8f8f;
+}
+
+td {
+	padding-bottom:3px;
+	padding-left:1em;
+	padding-right:1em;
+	padding-top:3px;
+	border-color:#444444;
+	border-style:solid;
+	border-width:thin;
+}
+
+h4 {
+	font-weight : bold;
+	text-shadow: 2px 2px #ff0000;
+}
+.minmax{
+	padding-bottom: 0px;
+}
+
+
+/* EoF */
