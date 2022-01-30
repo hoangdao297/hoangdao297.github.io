@@ -20,15 +20,15 @@ function remark(responseTime)
 	if (responseTime < 0.10)
 		responseString="Pro Gamer!";
 	if (responseTime >= 0.10 && responseTime < 0.20)
-		responseString="Good Gamer!";
+		responseString="Vip Gamer!";
 	if (responseTime >=0.20 && responseTime < 0.30)
-		responseString="Okay Fine";
+		responseString="Ok cung duoc";
 	if (responseTime >=0.30 && responseTime < 0.60)
-		responseString="Noob";
+		responseString="Tam duoc nha ma con ga lam";
 	if (responseTime >=0.60 && responseTime < 1)
-		responseString="Delete game please";
+		responseString="Noob";
 	if (responseTime >=1)
-		responseString="Sleeping...";
+		responseString="Delete game please";
 
 	return responseString;
 }
