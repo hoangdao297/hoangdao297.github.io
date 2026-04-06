@@ -11,32 +11,27 @@
         :root { --main: #2c3e50; --bg: #f2f2f7; --accent: #27ae60; --danger: #e74c3c; --card-bg: #ffffff; }
         body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: var(--bg); margin: 0; padding: 15px; padding-top: 50px; color: var(--main); -webkit-tap-highlight-color: transparent; }
         
-        /* Auth Screen */
         #auth-screen { position: fixed; inset:0; background: white; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; }
         input[type="password"] { padding: 15px; font-size: 24px; text-align: center; border: 2px solid #eee; border-radius: 16px; margin-bottom: 20px; width: 200px; outline: none; background: #fafafa; }
         
         h2 { text-align: center; font-size: 1.5em; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; color: #444; }
         
-        /* Grid and Sections */
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 240px; }
         .category { grid-column: 1 / -1; font-weight: 800; padding: 15px 5px 5px 5px; margin-top: 10px; color: #333; font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px; }
         
-        /* Button Base Styles */
         .btn { border: 1.5px solid rgba(0,0,0,0.05); padding: 16px 10px; border-radius: 18px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02); cursor: pointer; display: flex; flex-direction: column; justify-content: center; transition: transform 0.1s; }
         .btn:active { transform: scale(0.92); filter: brightness(0.9); }
         .item-name { font-size: 0.9em; font-weight: 700; margin-bottom: 4px; }
         .price { font-size: 0.8em; font-weight: 600; opacity: 0.8; }
 
-        /* Specific Category Colors */
-        .cat-tra { background: #e8f5e9; border-color: #c8e6c9; color: #2e7d32; } /* Green */
-        .cat-cafe { background: #efebe9; border-color: #d7ccc8; color: #4e342e; } /* Brown */
-        .cat-sua { background: #fce4ec; border-color: #f8bbd0; color: #c2185b; } /* Pink */
-        .cat-soda { background: #e3f2fd; border-color: #bbdefb; color: #1565c0; } /* Blue */
-        .cat-top { background: #f3e5f5; border-color: #e1bee7; color: #7b1fa2; } /* Purple */
-        .cat-level { background: #ffffff; border-color: #3498db; color: #3498db; border-style: dashed; } /* Outlined Blue */
-        .cat-khac { background: #ffffff; border-color: #9e9e9e; color: #616161; } /* Grey */
+        .cat-tra { background: #e8f5e9; border-color: #c8e6c9; color: #2e7d32; }
+        .cat-cafe { background: #efebe9; border-color: #d7ccc8; color: #4e342e; }
+        .cat-sua { background: #fce4ec; border-color: #f8bbd0; color: #c2185b; }
+        .cat-soda { background: #e3f2fd; border-color: #bbdefb; color: #1565c0; }
+        .cat-top { background: #f3e5f5; border-color: #e1bee7; color: #7b1fa2; }
+        .cat-level { background: #ffffff; border-color: #3498db; color: #3498db; border-style: dashed; }
+        .cat-khac { background: #ffffff; border-color: #9e9e9e; color: #616161; }
 
-        /* Cart UI */
         .cart-container { position: fixed; bottom: 0; left: 0; right: 0; background: white; box-shadow: 0 -10px 30px rgba(0,0,0,0.1); border-radius: 30px 30px 0 0; padding: 20px; z-index: 50; }
         .req-hint { font-size: 13px; font-weight: 700; margin-bottom: 12px; text-align: center; padding: 10px; border-radius: 12px; }
         .cart-list { max-height: 90px; overflow-y: auto; display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px; }
@@ -44,16 +39,17 @@
         .cart-tag span { color: var(--danger); margin-left: 8px; font-size: 16px; }
         .cart-controls { display: flex; justify-content: space-between; align-items: center; }
         #total-view { font-size: 1.6em; font-weight: 900; }
-        .gen-btn { background: #27ae60; color: white; padding: 15px 30px; border-radius: 18px; border: none; font-weight: 800; font-size: 1em; box-shadow: 0 4px 15px rgba(39,174,96,0.3); }
+        .gen-btn { background: #27ae60; color: white; padding: 15px 30px; border-radius: 18px; border: none; font-weight: 800; font-size: 1em; }
 
-        /* Receipt Overlay */
-        #receipt-overlay { display: none; position: fixed; inset:0; background: rgba(0,0,0,0.85); z-index: 100; justify-content: center; align-items: center; padding: 15px; }
-        #receipt-box { background: white; width: 100%; max-width: 340px; padding: 20px; border-radius: 24px; text-align: center; }
-        #receipt-content { font-family: 'Courier New', Courier, monospace; padding: 15px; background: white; color: #000; }
-        .receipt-item { display: flex; justify-content: space-between; margin: 6px 0; font-size: 14px; }
+        #receipt-overlay { display: none; position: fixed; inset:0; background: rgba(0,0,0,0.9); z-index: 100; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
+        #receipt-box { background: white; width: 100%; max-width: 340px; border-radius: 24px; display: flex; flex-direction: column; max-height: 85vh; overflow: hidden; }
+        #receipt-scroll-area { overflow-y: auto; padding: 20px; flex-grow: 1; -webkit-overflow-scrolling: touch; }
+        #receipt-content { font-family: 'Courier New', Courier, monospace; background: white; color: #000; padding: 5px; }
+        .receipt-item { display: flex; justify-content: space-between; margin: 6px 0; font-size: 14px; text-align: left; }
         .receipt-item.is-sub { font-size: 12px; color: #555; padding-left: 15px; }
-        #result-img { max-width: 100%; margin-top: 15px; border-radius: 12px; display: none; }
-        .close-btn { margin-top: 15px; padding: 15px; width: 100%; border-radius: 16px; border: none; background: #f1f3f5; font-weight: 700; }
+        #result-img { max-width: 100%; border-radius: 12px; display: none; margin-bottom: 10px; }
+        .receipt-footer { padding: 15px 20px; background: #fff; border-top: 1px solid #eee; }
+        .close-btn { width: 100%; padding: 16px; border-radius: 16px; border: none; background: #f1f3f5; font-weight: 700; font-size: 1em; color: #333; }
     </style>
 </head>
 <body>
@@ -79,20 +75,24 @@
 
 <div id="receipt-overlay">
     <div id="receipt-box">
-        <div id="receipt-content">
-            <h2 style="margin:0; font-size: 28px; color: #000;">YÉ - LOO</h2>
-            <p style="font-size: 12px; margin: 4px 0;">35 Lý Thái Tổ, P. Vườn Lài, TP. HCM</p>
-            <p style="font-weight: bold; margin: 4px 0; font-size: 14px;">SĐT: 0903 633 366</p>
-            <p id="receipt-date" style="font-size:11px; margin-bottom: 10px;"></p>
-            <div style="border-top: 2px dashed #000; margin: 10px 0;"></div>
-            <div id="receipt-items"></div>
-            <div style="border-top: 2px dashed #000; margin: 10px 0;"></div>
-            <h3 id="receipt-total" style="margin: 10px 0; font-size: 22px;"></h3>
-            <p style="font-size:12px; font-style: italic;">Cảm ơn & Hẹn gặp lại!</p>
+        <div id="receipt-scroll-area">
+            <div id="receipt-content">
+                <h2 style="margin:0; font-size: 28px; color: #000; text-align:center;">YÉ - LOO</h2>
+                <p style="font-size: 12px; margin: 4px 0; text-align:center;">35 Lý Thái Tổ, P. Vườn Lài, TP. HCM</p>
+                <p style="font-weight: bold; margin: 4px 0; font-size: 14px; text-align:center;">SĐT: 0903 633 366</p>
+                <p id="receipt-date" style="font-size:11px; margin-bottom: 10px; text-align:center;"></p>
+                <div style="border-top: 2px dashed #000; margin: 10px 0;"></div>
+                <div id="receipt-items"></div>
+                <div style="border-top: 2px dashed #000; margin: 10px 0;"></div>
+                <h3 id="receipt-total" style="margin: 10px 0; font-size: 22px; text-align: center;"></h3>
+                <p style="font-size:12px; font-style: italic; text-align: center;">Cảm ơn & Hẹn gặp lại!</p>
+            </div>
+            <img id="result-img">
+            <p id="tip-text" style="font-size:12px; color:#27ae60; margin: 10px 0; font-weight: bold; display:none; text-align: center;"></p>
         </div>
-        <img id="result-img">
-        <p id="tip-text" style="font-size:12px; color:#27ae60; margin: 10px 0; font-weight: bold; display:none;"></p>
-        <button class="close-btn" onclick="closeReceipt()">Đóng & Làm mới</button>
+        <div class="receipt-footer">
+            <button class="close-btn" onclick="closeReceipt()">Đóng & Làm mới</button>
+        </div>
     </div>
 </div>
 
@@ -100,7 +100,6 @@
     const PASSCODE = "6868";
     let cart = [];
 
-    // Added 'cls' property for each category style
     const menu = [
         { name: "Trà trái cây tươi", price: 30000, cat: "Trà Trái Cây", cls: "cat-tra", needsLevels: true },
         { name: "Trà xoài chanh dây", price: 30000, cat: "Trà Trái Cây", cls: "cat-tra", needsLevels: true },
@@ -113,7 +112,6 @@
         { name: "Trà chanh", price: 15000, cat: "Trà Trái Cây", cls: "cat-tra", needsLevels: true },
         { name: "Trà tắc", price: 15000, cat: "Trà Trái Cây", cls: "cat-tra", needsLevels: true },
         { name: "Cam vắt", price: 15000, cat: "Trà Trái Cây", cls: "cat-tra", needsLevels: true },
-        
         { name: "Cà phê đá", price: 20000, cat: "Cacao & Cafe", cls: "cat-cafe", needsLevels: true },
         { name: "Cà phê sữa", price: 22000, cat: "Cacao & Cafe", cls: "cat-cafe", needsLevels: true },
         { name: "Cà phê sữa tươi", price: 25000, cat: "Cacao & Cafe", cls: "cat-cafe", needsLevels: true },
@@ -122,26 +120,21 @@
         { name: "Cacao sữa", price: 25000, cat: "Cacao & Cafe", cls: "cat-cafe", needsLevels: true },
         { name: "Cacao sữa phô mai", price: 30000, cat: "Cacao & Cafe", cls: "cat-cafe", needsLevels: true },
         { name: "Cacao latte oreo", price: 30000, cat: "Cacao & Cafe", cls: "cat-cafe", needsLevels: true },
-        
         { name: "Sữa dâu", price: 35000, cat: "Sữa & Sữa Chua", cls: "cat-sua", needsLevels: true },
         { name: "Sữa chua lắc dâu", price: 35000, cat: "Sữa & Sữa Chua", cls: "cat-sua", needsLevels: true },
         { name: "Sữa chua lắc chanh dây", price: 35000, cat: "Sữa & Sữa Chua", cls: "cat-sua", needsLevels: true },
         { name: "Sữa chua lắc việt quất", price: 35000, cat: "Sữa & Sữa Chua", cls: "cat-sua", needsLevels: true },
         { name: "Sữa chua lắc", price: 25000, cat: "Sữa & Sữa Chua", cls: "cat-sua", needsLevels: true },
-        
         { name: "Soda Biển xanh", price: 25000, cat: "Soda", cls: "cat-soda", needsLevels: true },
         { name: "Soda Mùa hè", price: 25000, cat: "Soda", cls: "cat-soda", needsLevels: true },
         { name: "Soda Nhiệt đới", price: 25000, cat: "Soda", cls: "cat-soda", needsLevels: true },
-        
         { name: "Nước suối", price: 5000, cat: "Khác", cls: "cat-khac", needsLevels: false },
-        
         { name: "Thạch cà phê", price: 5000, cat: "Topping", cls: "cat-top", needsLevels: false },
         { name: "Thạch dâu", price: 5000, cat: "Topping", cls: "cat-top", needsLevels: false },
         { name: "Thạch đào", price: 5000, cat: "Topping", cls: "cat-top", needsLevels: false },
         { name: "Kem muối", price: 5000, cat: "Topping", cls: "cat-top", needsLevels: false },
         { name: "Trân châu trắng", price: 5000, cat: "Topping", cls: "cat-top", needsLevels: false },
         { name: "Trân châu thủy tinh", price: 5000, cat: "Topping", cls: "cat-top", needsLevels: false },
-        
         { name: "Không đá", price: 0, cat: "Mức Đá", cls: "cat-level", needsLevels: false },
         { name: "Ít đá", price: 0, cat: "Mức Đá", cls: "cat-level", needsLevels: false },
         { name: "Đá BT", price: 0, cat: "Mức Đá", cls: "cat-level", needsLevels: false },
@@ -166,7 +159,7 @@
             const b = document.createElement('div'); 
             b.className = `btn ${item.cls}`;
             b.innerHTML=`<span class="item-name">${item.name}</span><span class="price">${item.price > 0 ? item.price.toLocaleString() + 'đ' : '--'}</span>`;
-            b.onclick=()=>{ cart.push({...item, id: Math.random()}); updateUI(); }; 
+            b.onclick=()=>{ cart.push({...item, cartId: Math.random()}); updateUI(); }; 
             grid.appendChild(b);
         });
     }
@@ -174,7 +167,6 @@
     function updateUI() {
         const list = document.getElementById('cart-list-ui'); list.innerHTML="";
         let total = 0, drinkCount = 0, levelRequiredCount = 0, iceCount = 0, sugarCount = 0;
-
         cart.forEach((item, idx) => {
             total += item.price;
             if (item.cat !== "Topping" && item.cat !== "Mức Đá" && item.cat !== "Mức Đường") {
@@ -187,10 +179,8 @@
             t.innerHTML=`${item.name} <span>×</span>`;
             t.onclick=()=>{ cart.splice(idx,1); updateUI(); }; list.appendChild(t);
         });
-
         document.getElementById('total-view').innerText = `${total.toLocaleString()}đ`;
         const msg = document.getElementById('req-msg');
-
         if(drinkCount === 0) {
             msg.innerText = "Bác Uyên ơi, chọn món nước nhé!";
             msg.style.background = "#fffcf0"; msg.style.color = "#f39c12";
@@ -217,17 +207,32 @@
         document.getElementById('receipt-content').style.display='block';
         const tip = document.getElementById('tip-text'); tip.style.display='block'; tip.innerText = "Đang chuẩn bị bill...";
         
+        // --- SMART GROUPING LOGIC ---
+        const grouped = [];
+        cart.forEach(item => {
+            const existing = grouped.find(g => g.name === item.name && g.price === item.price);
+            if (existing) {
+                existing.count++;
+            } else {
+                grouped.push({...item, count: 1});
+            }
+        });
+
         const itemsDiv = document.getElementById('receipt-items'); itemsDiv.innerHTML="";
-        cart.forEach(i => {
+        grouped.forEach(i => {
             const isSub = (i.cat === "Topping" || i.price === 0);
+            const displayName = i.count > 1 ? `${i.name} x${i.count}` : i.name;
+            const displayPrice = i.price > 0 ? (i.price * i.count).toLocaleString() : '';
+            
             itemsDiv.innerHTML += `<div class="receipt-item ${isSub ? 'is-sub' : ''}">
-                <span style="text-align:left">${isSub ? '- ' : ''}${i.name}</span>
-                <span>${i.price > 0 ? i.price.toLocaleString() : ''}</span>
+                <span style="flex:1;">${isSub ? '- ' : ''}${displayName}</span>
+                <span style="min-width:60px; text-align:right;">${displayPrice}</span>
             </div>`;
         });
         
         document.getElementById('receipt-date').innerText = new Date().toLocaleString('vi-VN');
         document.getElementById('receipt-total').innerText = `TỔNG: ${cart.reduce((s,i)=>s+i.price, 0).toLocaleString()}đ`;
+        document.getElementById('receipt-scroll-area').scrollTop = 0;
 
         setTimeout(() => {
             html2canvas(document.getElementById('receipt-content'), {scale: 3}).then(canvas => {
