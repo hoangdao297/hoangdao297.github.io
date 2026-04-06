@@ -8,143 +8,68 @@
     <title>Yé - Loo POS</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        :root { 
-            --main: #2c3e50; 
-            --bg: #f8f9fa; 
-            --accent: #27ae60; 
-            --danger: #e74c3c; 
-            --blue: #3498db; 
-            --warn: #f39c12;
-            --card-bg: #ffffff;
-        }
-        
-        body { 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            background: var(--bg); 
-            margin: 0; 
-            padding: 15px; 
-            padding-top: 50px; 
-            color: var(--main);
-            -webkit-tap-highlight-color: transparent;
-        }
+        :root { --main: #2c3e50; --bg: #f2f2f7; --accent: #27ae60; --danger: #e74c3c; --card-bg: #ffffff; }
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: var(--bg); margin: 0; padding: 15px; padding-top: 50px; color: var(--main); -webkit-tap-highlight-color: transparent; }
         
         /* Auth Screen */
-        #auth-screen { 
-            position: fixed; inset:0; background: white; z-index: 1000; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center; 
-        }
-        #auth-screen h3 { font-size: 28px; margin-bottom: 5px; color: var(--accent); }
-        input[type="password"] { 
-            padding: 15px; font-size: 24px; text-align: center; 
-            border: 2px solid #eee; border-radius: 16px; margin-bottom: 20px; 
-            width: 200px; outline: none; background: #fafafa;
-        }
+        #auth-screen { position: fixed; inset:0; background: white; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        input[type="password"] { padding: 15px; font-size: 24px; text-align: center; border: 2px solid #eee; border-radius: 16px; margin-bottom: 20px; width: 200px; outline: none; background: #fafafa; }
         
-        /* Header */
-        h2 { text-align: center; font-size: 1.5em; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; color: var(--accent); }
+        h2 { text-align: center; font-size: 1.5em; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; color: #444; }
         
-        /* Menu Grid */
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 240px; }
-        .category { 
-            grid-column: 1 / -1; font-weight: 700; padding: 10px 5px; 
-            margin-top: 15px; color: #888; font-size: 0.75em; 
-            text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 1px solid #ddd;
-        }
+        /* Grid and Sections */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 240px; }
+        .category { grid-column: 1 / -1; font-weight: 800; padding: 15px 5px 5px 5px; margin-top: 10px; color: #333; font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px; }
         
-        .btn { 
-            background: var(--card-bg); border: none; padding: 15px 10px; 
-            border-radius: 16px; text-align: center; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.04); cursor: pointer; 
-            display: flex; flex-direction: column; justify-content: center;
-            transition: transform 0.1s;
-        }
-        .btn:active { transform: scale(0.95); background: #f0f0f0; }
-        
-        .item-name { font-size: 0.9em; font-weight: 600; color: #444; margin-bottom: 4px; }
-        .price { font-size: 0.85em; color: var(--accent); font-weight: 700; }
-        
-        /* Level Buttons */
-        .level-btn { background: #eef7ff; }
-        .level-btn .item-name { color: #2980b9; }
-        .level-btn .price { color: #3498db; }
+        /* Button Base Styles */
+        .btn { border: 1.5px solid rgba(0,0,0,0.05); padding: 16px 10px; border-radius: 18px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02); cursor: pointer; display: flex; flex-direction: column; justify-content: center; transition: transform 0.1s; }
+        .btn:active { transform: scale(0.92); filter: brightness(0.9); }
+        .item-name { font-size: 0.9em; font-weight: 700; margin-bottom: 4px; }
+        .price { font-size: 0.8em; font-weight: 600; opacity: 0.8; }
+
+        /* Specific Category Colors */
+        .cat-tra { background: #e8f5e9; border-color: #c8e6c9; color: #2e7d32; } /* Green */
+        .cat-cafe { background: #efebe9; border-color: #d7ccc8; color: #4e342e; } /* Brown */
+        .cat-sua { background: #fce4ec; border-color: #f8bbd0; color: #c2185b; } /* Pink */
+        .cat-soda { background: #e3f2fd; border-color: #bbdefb; color: #1565c0; } /* Blue */
+        .cat-top { background: #f3e5f5; border-color: #e1bee7; color: #7b1fa2; } /* Purple */
+        .cat-level { background: #ffffff; border-color: #3498db; color: #3498db; border-style: dashed; } /* Outlined Blue */
+        .cat-khac { background: #ffffff; border-color: #9e9e9e; color: #616161; } /* Grey */
 
         /* Cart UI */
-        .cart-container { 
-            position: fixed; bottom: 0; left: 0; right: 0; 
-            background: rgba(255, 255, 255, 0.95); 
-            backdrop-filter: blur(10px);
-            box-shadow: 0 -10px 30px rgba(0,0,0,0.08); 
-            border-radius: 30px 30px 0 0; padding: 20px; z-index: 50; 
-        }
-        
-        .req-hint { 
-            font-size: 13px; font-weight: 700; margin-bottom: 12px; 
-            text-align: center; padding: 10px; border-radius: 12px; 
-            transition: all 0.3s;
-        }
-        
-        .cart-list { 
-            max-height: 90px; overflow-y: auto; display: flex; 
-            flex-wrap: wrap; gap: 6px; margin-bottom: 15px; 
-            padding-bottom: 10px; min-height: 40px;
-        }
-        
-        .cart-tag { 
-            background: #f1f3f5; padding: 6px 12px; border-radius: 20px; 
-            font-size: 12px; font-weight: 500; display: flex; align-items: center;
-            border: 1px solid #e9ecef;
-        }
-        .cart-tag span { color: var(--danger); font-weight: 900; margin-left: 8px; font-size: 14px; }
-        
+        .cart-container { position: fixed; bottom: 0; left: 0; right: 0; background: white; box-shadow: 0 -10px 30px rgba(0,0,0,0.1); border-radius: 30px 30px 0 0; padding: 20px; z-index: 50; }
+        .req-hint { font-size: 13px; font-weight: 700; margin-bottom: 12px; text-align: center; padding: 10px; border-radius: 12px; }
+        .cart-list { max-height: 90px; overflow-y: auto; display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px; }
+        .cart-tag { background: #f1f3f5; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; display: flex; align-items: center; }
+        .cart-tag span { color: var(--danger); margin-left: 8px; font-size: 16px; }
         .cart-controls { display: flex; justify-content: space-between; align-items: center; }
-        #total-view { font-size: 1.6em; font-weight: 900; color: var(--main); }
-        
-        .gen-btn { 
-            background: var(--accent); color: white; padding: 15px 30px; 
-            border-radius: 18px; border: none; font-weight: 800; font-size: 1em;
-            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
-        }
+        #total-view { font-size: 1.6em; font-weight: 900; }
+        .gen-btn { background: #27ae60; color: white; padding: 15px 30px; border-radius: 18px; border: none; font-weight: 800; font-size: 1em; box-shadow: 0 4px 15px rgba(39,174,96,0.3); }
 
         /* Receipt Overlay */
-        #receipt-overlay { 
-            display: none; position: fixed; inset:0; 
-            background: rgba(0,0,0,0.85); z-index: 100; 
-            justify-content: center; align-items: center; padding: 15px; 
-        }
-        #receipt-box { 
-            background: white; width: 100%; max-width: 340px; 
-            padding: 20px; border-radius: 24px; text-align: center;
-            overflow-y: auto; max-height: 90vh;
-        }
-        
-        #receipt-content { 
-            font-family: 'Courier New', Courier, monospace; 
-            padding: 15px; background: white; color: #000; text-align: center; 
-        }
+        #receipt-overlay { display: none; position: fixed; inset:0; background: rgba(0,0,0,0.85); z-index: 100; justify-content: center; align-items: center; padding: 15px; }
+        #receipt-box { background: white; width: 100%; max-width: 340px; padding: 20px; border-radius: 24px; text-align: center; }
+        #receipt-content { font-family: 'Courier New', Courier, monospace; padding: 15px; background: white; color: #000; }
         .receipt-item { display: flex; justify-content: space-between; margin: 6px 0; font-size: 14px; }
-        .receipt-item.is-sub { font-size: 12px; color: #555; padding-left: 15px; margin: 2px 0; }
-        
-        #result-img { max-width: 100%; margin-top: 15px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: none; }
-        .close-btn { 
-            margin-top: 15px; padding: 15px; width: 100%; border-radius: 16px; 
-            border: none; background: #f1f3f5; font-weight: 700; color: #444;
-        }
+        .receipt-item.is-sub { font-size: 12px; color: #555; padding-left: 15px; }
+        #result-img { max-width: 100%; margin-top: 15px; border-radius: 12px; display: none; }
+        .close-btn { margin-top: 15px; padding: 15px; width: 100%; border-radius: 16px; border: none; background: #f1f3f5; font-weight: 700; }
     </style>
 </head>
 <body>
 
 <div id="auth-screen">
-    <h3>Yé - Loo</h3>
-    <p style="margin-top:0; font-size: 16px; color: #888;">Chào Bác Uyên ạ!</p>
+    <h3 style="color:#27ae60; font-size: 28px; margin-bottom: 5px;">Yé - Loo</h3>
+    <p style="color: #888; margin-bottom: 20px;">Chào Bác Uyên ạ!</p>
     <input type="password" id="pw-input" placeholder="Mật khẩu" inputmode="numeric">
     <button onclick="checkPw()" class="gen-btn">Vào Cửa Hàng</button>
 </div>
 
-<h2>Yé - Loo Tea</h2>
+<h2>Yé - Loo Tea Menu</h2>
 <div class="grid" id="menu-grid"></div>
 
 <div class="cart-container">
-    <div id="req-msg" class="req-hint" style="background: #fffcf0; color: var(--warn);">Bác Uyên ơi, chọn món nước nhé!</div>
+    <div id="req-msg" class="req-hint" style="background: #fffcf0; color: #f39c12;">Bác Uyên ơi, chọn món nước nhé!</div>
     <div class="cart-list" id="cart-list-ui"></div>
     <div class="cart-controls">
         <div id="total-view">0đ</div>
@@ -155,7 +80,7 @@
 <div id="receipt-overlay">
     <div id="receipt-box">
         <div id="receipt-content">
-            <h2 style="margin:0; font-size: 28px; letter-spacing: 3px; color: #000;">YÉ - LOO</h2>
+            <h2 style="margin:0; font-size: 28px; color: #000;">YÉ - LOO</h2>
             <p style="font-size: 12px; margin: 4px 0;">35 Lý Thái Tổ, P. Vườn Lài, TP. HCM</p>
             <p style="font-weight: bold; margin: 4px 0; font-size: 14px;">SĐT: 0903 633 366</p>
             <p id="receipt-date" style="font-size:11px; margin-bottom: 10px;"></p>
@@ -163,10 +88,10 @@
             <div id="receipt-items"></div>
             <div style="border-top: 2px dashed #000; margin: 10px 0;"></div>
             <h3 id="receipt-total" style="margin: 10px 0; font-size: 22px;"></h3>
-            <p style="font-size:12px; font-style: italic;">Hẹn gặp lại quý khách!</p>
+            <p style="font-size:12px; font-style: italic;">Cảm ơn & Hẹn gặp lại!</p>
         </div>
         <img id="result-img">
-        <p id="tip-text" style="font-size:12px; color:var(--accent); margin: 10px 0; font-weight: bold; display:none;"></p>
+        <p id="tip-text" style="font-size:12px; color:#27ae60; margin: 10px 0; font-weight: bold; display:none;"></p>
         <button class="close-btn" onclick="closeReceipt()">Đóng & Làm mới</button>
     </div>
 </div>
@@ -175,45 +100,54 @@
     const PASSCODE = "6868";
     let cart = [];
 
+    // Added 'cls' property for each category style
     const menu = [
-        { name: "Trà trái cây tươi", price: 30000, cat: "Trà Trái Cây" },
-        { name: "Trà xoài chanh dây", price: 30000, cat: "Trà Trái Cây" },
-        { name: "Trà ổi hồng chanh dây", price: 30000, cat: "Trà Trái Cây" },
-        { name: "Trà Happy", price: 30000, cat: "Trà Trái Cây" },
-        { name: "Trà vải", price: 30000, cat: "Trà Trái Cây" },
-        { name: "Trà đào dầm", price: 30000, cat: "Trà Trái Cây" },
-        { name: "Trà dâu", price: 25000, cat: "Trà Trái Cây" },
-        { name: "Trà sen vàng", price: 30000, cat: "Trà Trái Cây" },
-        { name: "Trà chanh", price: 15000, cat: "Trà Trái Cây" },
-        { name: "Trà tắc", price: 15000, cat: "Trà Trái Cây" },
-        { name: "Cà phê đá", price: 20000, cat: "Cacao & Cafe" },
-        { name: "Cà phê sữa", price: 22000, cat: "Cacao & Cafe" },
-        { name: "Cà phê sữa tươi", price: 25000, cat: "Cacao & Cafe" },
-        { name: "Cafe sữa tươi phô mai", price: 30000, cat: "Cacao & Cafe" },
-        { name: "Cà phê muối", price: 25000, cat: "Cacao & Cafe" },
-        { name: "Cacao sữa", price: 25000, cat: "Cacao & Cafe" },
-        { name: "Cacao sữa phô mai", price: 30000, cat: "Cacao & Cafe" },
-        { name: "Cacao latte oreo", price: 30000, cat: "Cacao & Cafe" },
-        { name: "Sữa dâu", price: 35000, cat: "Sữa & Sữa Chua" },
-        { name: "Sữa chua lắc dâu", price: 35000, cat: "Sữa & Sữa Chua" },
-        { name: "Sữa chua lắc chanh dây", price: 35000, cat: "Sữa & Sữa Chua" },
-        { name: "Sữa chua lắc việt quất", price: 35000, cat: "Sữa & Sữa Chua" },
-        { name: "Sữa chua lắc", price: 25000, cat: "Sữa & Sữa Chua" },
-        { name: "Soda Biển xanh", price: 25000, cat: "Soda" },
-        { name: "Soda Mùa hè", price: 25000, cat: "Soda" },
-        { name: "Soda Nhiệt đới", price: 25000, cat: "Soda" },
-        { name: "Thạch cà phê", price: 5000, cat: "Topping" },
-        { name: "Thạch dâu", price: 5000, cat: "Topping" },
-        { name: "Thạch đào", price: 5000, cat: "Topping" },
-        { name: "Kem muối", price: 5000, cat: "Topping" },
-        { name: "Trân châu trắng", price: 5000, cat: "Topping" },
-        { name: "Trân châu thủy tinh", price: 5000, cat: "Topping" },
-        { name: "Không đá", price: 0, cat: "Mức Đá" },
-        { name: "Ít đá", price: 0, cat: "Mức Đá" },
-        { name: "Đá BT", price: 0, cat: "Mức Đá" },
-        { name: "Không đường", price: 0, cat: "Mức Đường" },
-        { name: "Ít đường", price: 0, cat: "Mức Đường" },
-        { name: "Đường BT", price: 0, cat: "Mức Đường" }
+        { name: "Trà trái cây tươi", price: 30000, cat: "Trà Trái Cây", cls: "cat-tra", needsLevels: true },
+        { name: "Trà xoài chanh dây", price: 30000, cat: "Trà Trái Cây", cls: "cat-tra", needsLevels: true },
+        { name: "Trà ổi hồng chanh dây", price: 30000, cat: "Trà Trái Cây", cls: "cat-tra", needsLevels: true },
+        { name: "Trà Happy", price: 30000, cat: "Trà Trái Cây", cls: "cat-tra", needsLevels: true },
+        { name: "Trà vải", price: 30000, cat: "Trà Trái Cây", cls: "cat-tra", needsLevels: true },
+        { name: "Trà đào dầm", price: 30000, cat: "Trà Trái Cây", cls: "cat-tra", needsLevels: true },
+        { name: "Trà dâu", price: 25000, cat: "Trà Trái Cây", cls: "cat-tra", needsLevels: true },
+        { name: "Trà sen vàng", price: 30000, cat: "Trà Trái Cây", cls: "cat-tra", needsLevels: true },
+        { name: "Trà chanh", price: 15000, cat: "Trà Trái Cây", cls: "cat-tra", needsLevels: true },
+        { name: "Trà tắc", price: 15000, cat: "Trà Trái Cây", cls: "cat-tra", needsLevels: true },
+        { name: "Cam vắt", price: 15000, cat: "Trà Trái Cây", cls: "cat-tra", needsLevels: true },
+        
+        { name: "Cà phê đá", price: 20000, cat: "Cacao & Cafe", cls: "cat-cafe", needsLevels: true },
+        { name: "Cà phê sữa", price: 22000, cat: "Cacao & Cafe", cls: "cat-cafe", needsLevels: true },
+        { name: "Cà phê sữa tươi", price: 25000, cat: "Cacao & Cafe", cls: "cat-cafe", needsLevels: true },
+        { name: "Cafe sữa tươi phô mai", price: 30000, cat: "Cacao & Cafe", cls: "cat-cafe", needsLevels: true },
+        { name: "Cà phê muối", price: 25000, cat: "Cacao & Cafe", cls: "cat-cafe", needsLevels: true },
+        { name: "Cacao sữa", price: 25000, cat: "Cacao & Cafe", cls: "cat-cafe", needsLevels: true },
+        { name: "Cacao sữa phô mai", price: 30000, cat: "Cacao & Cafe", cls: "cat-cafe", needsLevels: true },
+        { name: "Cacao latte oreo", price: 30000, cat: "Cacao & Cafe", cls: "cat-cafe", needsLevels: true },
+        
+        { name: "Sữa dâu", price: 35000, cat: "Sữa & Sữa Chua", cls: "cat-sua", needsLevels: true },
+        { name: "Sữa chua lắc dâu", price: 35000, cat: "Sữa & Sữa Chua", cls: "cat-sua", needsLevels: true },
+        { name: "Sữa chua lắc chanh dây", price: 35000, cat: "Sữa & Sữa Chua", cls: "cat-sua", needsLevels: true },
+        { name: "Sữa chua lắc việt quất", price: 35000, cat: "Sữa & Sữa Chua", cls: "cat-sua", needsLevels: true },
+        { name: "Sữa chua lắc", price: 25000, cat: "Sữa & Sữa Chua", cls: "cat-sua", needsLevels: true },
+        
+        { name: "Soda Biển xanh", price: 25000, cat: "Soda", cls: "cat-soda", needsLevels: true },
+        { name: "Soda Mùa hè", price: 25000, cat: "Soda", cls: "cat-soda", needsLevels: true },
+        { name: "Soda Nhiệt đới", price: 25000, cat: "Soda", cls: "cat-soda", needsLevels: true },
+        
+        { name: "Nước suối", price: 5000, cat: "Khác", cls: "cat-khac", needsLevels: false },
+        
+        { name: "Thạch cà phê", price: 5000, cat: "Topping", cls: "cat-top", needsLevels: false },
+        { name: "Thạch dâu", price: 5000, cat: "Topping", cls: "cat-top", needsLevels: false },
+        { name: "Thạch đào", price: 5000, cat: "Topping", cls: "cat-top", needsLevels: false },
+        { name: "Kem muối", price: 5000, cat: "Topping", cls: "cat-top", needsLevels: false },
+        { name: "Trân châu trắng", price: 5000, cat: "Topping", cls: "cat-top", needsLevels: false },
+        { name: "Trân châu thủy tinh", price: 5000, cat: "Topping", cls: "cat-top", needsLevels: false },
+        
+        { name: "Không đá", price: 0, cat: "Mức Đá", cls: "cat-level", needsLevels: false },
+        { name: "Ít đá", price: 0, cat: "Mức Đá", cls: "cat-level", needsLevels: false },
+        { name: "Đá BT", price: 0, cat: "Mức Đá", cls: "cat-level", needsLevels: false },
+        { name: "Không đường", price: 0, cat: "Mức Đường", cls: "cat-level", needsLevels: false },
+        { name: "Ít đường", price: 0, cat: "Mức Đường", cls: "cat-level", needsLevels: false },
+        { name: "Đường BT", price: 0, cat: "Mức Đường", cls: "cat-level", needsLevels: false }
     ];
 
     function checkPw() {
@@ -230,7 +164,7 @@
                 lastCat = item.cat;
             }
             const b = document.createElement('div'); 
-            b.className = (item.price === 0) ? "btn level-btn" : "btn";
+            b.className = `btn ${item.cls}`;
             b.innerHTML=`<span class="item-name">${item.name}</span><span class="price">${item.price > 0 ? item.price.toLocaleString() + 'đ' : '--'}</span>`;
             b.onclick=()=>{ cart.push({...item, id: Math.random()}); updateUI(); }; 
             grid.appendChild(b);
@@ -239,11 +173,14 @@
 
     function updateUI() {
         const list = document.getElementById('cart-list-ui'); list.innerHTML="";
-        let total = 0, drinkCount = 0, iceCount = 0, sugarCount = 0;
+        let total = 0, drinkCount = 0, levelRequiredCount = 0, iceCount = 0, sugarCount = 0;
 
         cart.forEach((item, idx) => {
             total += item.price;
-            if (item.cat !== "Topping" && item.cat !== "Mức Đá" && item.cat !== "Mức Đường") drinkCount++;
+            if (item.cat !== "Topping" && item.cat !== "Mức Đá" && item.cat !== "Mức Đường") {
+                drinkCount++;
+                if (item.needsLevels) levelRequiredCount++;
+            }
             if (item.cat === "Mức Đá") iceCount++;
             if (item.cat === "Mức Đường") sugarCount++;
             const t = document.createElement('div'); t.className="cart-tag";
@@ -256,23 +193,24 @@
 
         if(drinkCount === 0) {
             msg.innerText = "Bác Uyên ơi, chọn món nước nhé!";
-            msg.style.background = "#fffcf0"; msg.style.color = "var(--warn)";
-        } else if(iceCount < drinkCount || sugarCount < drinkCount) {
-            msg.innerText = `⚠️ Bác chọn thêm cho đủ ${drinkCount} ly: (${iceCount} Đá - ${sugarCount} Đường)`;
-            msg.style.background = "#fff5f5"; msg.style.color = "var(--danger)";
+            msg.style.background = "#fffcf0"; msg.style.color = "#f39c12";
+        } else if(iceCount < levelRequiredCount || sugarCount < levelRequiredCount) {
+            msg.innerText = `⚠️ Cần thêm: (${iceCount}/${levelRequiredCount} Đá - ${sugarCount}/${levelRequiredCount} Đường)`;
+            msg.style.background = "#fff5f5"; msg.style.color = "#e74c3c";
         } else {
             msg.innerText = "✅ Bác Uyên tuyệt vời! Bấm Tạo Bill thôi ạ.";
-            msg.style.background = "#f0fff4"; msg.style.color = "var(--accent)";
+            msg.style.background = "#f0fff4"; msg.style.color = "#27ae60";
         }
     }
 
     function generateBill() {
-        let dc = cart.filter(i => i.cat !== "Topping" && i.cat !== "Mức Đá" && i.cat !== "Mức Đường").length;
+        let lrc = cart.filter(i => i.needsLevels).length;
         let ic = cart.filter(i => i.cat === "Mức Đá").length;
         let sc = cart.filter(i => i.cat === "Mức Đường").length;
+        let dc = cart.filter(i => i.cat !== "Topping" && i.cat !== "Mức Đá" && i.cat !== "Mức Đường").length;
 
         if(dc === 0) return alert("Bác Uyên chưa chọn món nước mà!");
-        if(ic < dc || sc < dc) return alert(`Bác Uyên ơi, phải chọn ĐỦ Đá và Đường cho ${dc} ly nha!`);
+        if(ic < lrc || sc < lrc) return alert(`Bác chọn thêm Đá và Đường cho đủ ${lrc} ly pha chế nha!`);
 
         document.getElementById('receipt-overlay').style.display='flex';
         document.getElementById('result-img').style.display='none';
